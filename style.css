@@ -31,7 +31,7 @@ body {
 main  {
 
   max-width: 42.8rem;
-  height: auto;
+  height: ;
   margin: 12rem auto;
 
   background-color: var(--bc-main) ;

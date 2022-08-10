@@ -4,10 +4,17 @@ const buttonSubmit = document.querySelector ("#submitNumber");
 const buttonPlayAgain = document.querySelector ('#playAgain');
 const screen1 = document.querySelector (".screen1");
 const screen2 = document.querySelector (".screen2");
-const randomNumber = Math.floor (Math.random() * 10);
+let randomNumber =  Math.round (Math.random() * 10);
 let attempts = 1;
 
 
+function generaNumber () {
+
+   randomNumber = Math.round (Math.random() * 10);
+
+   return randomNumber;
+   
+}
 
 // switch between screens
 
@@ -23,40 +30,33 @@ function toggleScreen () {
 
    event.preventDefault();
    
-   if ( randomNumber == inputNumber.value ) {
+   if ( inputNumber.value == randomNumber ) {
 
       toggleScreen();
-
+      generaNumber()
       screen2.querySelector('h2').innerText = ` Você acertou em ${attempts} tentativas`;
+      attempts = 0
    
    } else {
 
       alert ('Tente novamente!');
-      inputNumber.value = "";
-      
+     
    }
+
+      inputNumber.value = "";
+      attempts ++
  
  }
+
+ console.log (randomNumber)
 
 // click play button again screen2
 
  function playAgain () {
 
    toggleScreen();
-   inputNumber.value = "";
+   generaNumber()
   
- }
-
- // keyboard enter key
-
- function keyenter (enter) {
-
-   if  (enter.key == 'Enter') {
-
-      toggleScreen ();
-
-   }
-
  }
 
 
@@ -66,5 +66,5 @@ buttonPlayAgain.addEventListener ('click', playAgain);
 
 buttonSubmit.addEventListener ('click', submit );
 
-document.addEventListener ('keydown', keyenter);
+
 
